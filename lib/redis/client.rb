@@ -285,7 +285,7 @@ class Redis
         tries += 1
 
         yield
-      rescue ConnectionError
+      rescue ConnectionError, TimeoutError
         disconnect
 
         if tries < 2 && @reconnect
