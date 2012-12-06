@@ -288,7 +288,8 @@ class Redis
       rescue ConnectionError, TimeoutError
         disconnect
 
-        if tries < 2 && @reconnect
+        if tries < 4 && @reconnect
+          sleep(tries + 1)
           retry
         else
           raise
